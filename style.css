@@ -1190,8 +1190,14 @@ textarea {
 /* -------------------- PROJECTS SECTION -------------------- */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.75rem;
+}
+
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .project-card {
@@ -1315,6 +1321,199 @@ textarea {
 
 .btn-text-link:hover {
   text-decoration: underline;
+}
+
+/* Feature Modal Trigger Button */
+.btn-features {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  margin-top: auto;
+  margin-bottom: 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent-light);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.btn-features:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--accent-light);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.15);
+}
+
+.btn-features .btn-arrow {
+  color: var(--accent-light);
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.btn-features:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+/* -------------------- PROJECT MODAL POPUP -------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 29, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-dialog {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 620px;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-lg), 0 0 35px rgba(56, 189, 248, 0.15);
+  transform: scale(0.95) translateY(10px);
+  transition: transform var(--transition-normal) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.open .modal-dialog {
+  transform: scale(1) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-dialog {
+    transform: none !important;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.25rem;
+}
+
+.modal-title-area {
+  flex: 1;
+}
+
+.modal-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.modal-close-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+  border-color: var(--accent-light);
+}
+
+.modal-project-desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.modal-section-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-light);
+  margin-bottom: 0.85rem;
+}
+
+.modal-features-content .project-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+  list-style: none;
+}
+
+.modal-features-content .project-features-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.modal-features-content .project-features-list li::before {
+  content: "▹";
+  position: absolute;
+  left: 0.15rem;
+  color: var(--accent-light);
+  font-size: 1.1rem;
+}
+
+.modal-tech-section {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.modal-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
 }
 
 /* -------------------- EDUCATION SECTION -------------------- */
